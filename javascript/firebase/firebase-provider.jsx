@@ -1,6 +1,5 @@
-// @flow
 import React from "react";
-import { FirebaseContext } from "./FirebaseContext";
+import { FirebaseContext } from "./firebase-context";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
@@ -13,6 +12,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyDYXrCxXXI5gWfVeA_9srDTCDX48B1ur_c",
   authDomain: "carbros-a50f6.firebaseapp.com",
+  databaseURL: "https://carbros-a50f6-default-rtdb.firebaseio.com",
   projectId: "carbros-a50f6",
   storageBucket: "carbros-a50f6.appspot.com",
   messagingSenderId: "440598771493",
@@ -25,11 +25,7 @@ const app: * = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-const FirebaseProvider = ({
-  children,
-}: {
-  children: React$Node,
-}): React$Node => {
+const FirebaseProvider = ({ children }) => {
   return (
     <FirebaseContext.Provider value={{ app, analytics, auth }}>
       {children}

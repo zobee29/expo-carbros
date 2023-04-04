@@ -1,8 +1,7 @@
-// @flow
 import { useContext } from "react";
-import { FirebaseContext } from "./FirebaseContext";
+import { FirebaseContext } from "./firebase-context";
 
-export const useFirebase = (): { app: *, analytics: *, auth: * } => {
+export const useFirebase = () => {
   const { app, analytics, auth } = useContext(FirebaseContext);
 
   return { app, analytics, auth };
