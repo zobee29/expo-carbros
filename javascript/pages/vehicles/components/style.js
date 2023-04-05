@@ -7,10 +7,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     fontSize: '14px',
     gap: '4px',
-    border: '1px solid #E6E6E6',
-    borderRadius: '4px',
+    borderBottom: '1px solid #E6E6E6',
     padding: '8px',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
   },
   titleContainer: {
     display: 'inline-flex',

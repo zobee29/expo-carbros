@@ -40,6 +40,7 @@ export default function App() {
                 component={Drivers} />
                 <Tab.Screen name="Vehicles" 
                 options={{
+                  headerShown: false,
                   tabBarIcon: ({ focused, color, size }) => (
                     <MaterialCommunityIcons name="car" color={focused ? theme.colors.primary : color} size={size} />
                   ),
