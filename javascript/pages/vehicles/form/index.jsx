@@ -57,18 +57,21 @@ const CarForm = () => {
       <TextInput
         label="Year"
         value={year}
+        style={styles.input}
         onChangeText={(text) => setYear(text)}
       />
       <Divider />
       <TextInput
         label="Label"
         value={label}
+        style={styles.input}
         onChangeText={(text) => setLabel(text)}
       />
       <Divider />
       <TextInput
         label="VIN"
         value={vin}
+        style={styles.input}
         onChangeText={(text) => setVin(text)}
       />
     </View>
