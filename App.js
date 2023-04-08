@@ -2,12 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import FirebaseProvider from './javascript/firebase/firebase-provider';
 import FirestoreProvider from './javascript/firestore/firestore-provider';
-import DataStoreProvider from './javascript/datastore/datastore-provider';
+import DataStoreProvider from 'datastore/datastore-provider';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { theme } from './theme'
-import { Dashboard, Drivers, Vehicles } from './javascript/pages'
+import { theme } from 'theme'
+import { Dashboard, Drivers, Vehicles } from 'pages'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
