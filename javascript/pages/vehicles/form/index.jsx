@@ -35,6 +35,7 @@ const CarForm = () => {
   };
 
   const handleVinChange = (vin) => {
+    if (vin.length > 17) return;
     if (hasValidVin(vin)) {
       setVinError(false);
     } else {
@@ -52,13 +53,6 @@ const CarForm = () => {
     setModel(value);
     setShowModelMenu(false);
   };
-
-  const renderIcon = (status) =>
-    status ? (
-      <TextInput.Icon icon="thumb-up" color={theme.colors.primary} />
-    ) : (
-      <TextInput.Icon icon="alert" color="red" />
-    );
 
   return (
     <View style={styles.container}>
@@ -128,7 +122,7 @@ const CarForm = () => {
         activeOutlineColor={yearError ? "red" : theme.colors.primary}
         style={[styles.fullWidth, styles.input]}
         onChangeText={(text) => handleYearChange(text)}
-        right={renderIcon(!yearError && year)}
+        right={yearError && <TextInput.Icon icon="alert" color="red" />}
       />
       <Divider />
       <TextInput
@@ -151,7 +145,7 @@ const CarForm = () => {
         outlineColor={vinError ? "red" : "black"}
         style={[styles.fullWidth, styles.input]}
         onChangeText={(text) => handleVinChange(text)}
-        right={renderIcon(!vinError && vin)}
+        right={vinError && <TextInput.Icon icon="alert" color="red" />}
       />
     </View>
   );
