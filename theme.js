@@ -20,6 +20,7 @@ export const theme = {
     onBackground: '#181c1c',
     onSurface: '#191C1C',
     tertiaryContainer: '#d4e3ff',
+    border: '#79747E',
     elevation: {
       level0: 'transparent',
       level1: '#EEF6F5',
@@ -28,6 +29,5 @@ export const theme = {
       level4: '#DCEBEB',
       level5: '#D7E8E8',
     }
-    
   },
 };

@@ -3,12 +3,26 @@ import { theme } from 'theme';
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    height: '100%',
+    display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: 'white',
+    height: '100%',
     padding: '8px',
     width: '100%',
+  },
+  inputContainer: {
+    display: 'flex',
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  ctaContainer: {
+    display: 'flex',
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: 'center',
+    width: '100%',
+    paddingBottom: 15
   },
   fullWidth: {
     width: '95vw'

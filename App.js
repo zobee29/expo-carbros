@@ -20,6 +20,7 @@ export default function App() {
           <PaperProvider theme={theme}>
             <NavigationContainer>
               <Tab.Navigator
+              initialRouteName={"Vehicles"}
                 screenOptions={{
                   tabBarStyle: {backgroundColor: '#DAE4E4', minHeight: '72px', paddingBottom: '12px', display: 'flex', justifyContent: 'center', alignItems: 'space-evenly'},
                 }}
@@ -38,7 +39,7 @@ export default function App() {
                   ),
                 }}
                 component={Drivers} />
-                <Tab.Screen name="Vehicles" 
+                <Tab.Screen name="Vehicles"
                 options={{
                   headerShown: false,
                   tabBarIcon: ({ focused, color, size }) => (

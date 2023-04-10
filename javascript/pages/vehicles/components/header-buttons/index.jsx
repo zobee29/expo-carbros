@@ -13,7 +13,7 @@ const HeaderButtons = ({ navigation }) => {
       />
       <IconButton
         size={24}
-        onPress={() => navigation.navigate("Edit Vehicles")}
+        onPress={() => navigation.navigate("Add Vehicle")}
         style={{ padding: "10px", color: "black" }}
         icon="plus"
       />

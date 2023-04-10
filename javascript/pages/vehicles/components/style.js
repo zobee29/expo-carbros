@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { theme } from 'theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -7,7 +8,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     fontSize: '14px',
     gap: '4px',
-    borderBottom: '1px solid #E6E6E6',
+    borderBottom: `1px solid ${theme.colors.border}`,
     padding: '8px',
   },
   titleContainer: {

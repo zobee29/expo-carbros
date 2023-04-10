@@ -2,7 +2,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View } from "react-native";
 import VehiclesList from "./list";
-import CarForm from "./form";
+import BasicInfo from "./form/basic";
+import Registration from "./form/registration";
 import styles from "../style";
 import HeaderButtons from "./components/header-buttons";
 
@@ -11,7 +12,7 @@ const Stack = createNativeStackNavigator();
 const Vehicles = () => {
   return (
     <View style={styles.container}>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={"Vehicles"}>
         <Stack.Screen
           options={({ navigation }) => ({
             headerRight: () => <HeaderButtons navigation={navigation} />,
@@ -19,7 +20,8 @@ const Vehicles = () => {
           name="Vehicles"
           component={VehiclesList}
         />
-        <Stack.Screen name="Edit Vehicles" component={CarForm} />
+        <Stack.Screen name="Add Vehicle" component={BasicInfo} />
+        <Stack.Screen name="Registration" component={Registration} />
       </Stack.Navigator>
     </View>
   );
