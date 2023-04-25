@@ -3,6 +3,7 @@ import { FirebaseContext } from "./firebase-context";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,10 +25,11 @@ const firebaseConfig = {
 const app: * = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
 const FirebaseProvider = ({ children }) => {
   return (
-    <FirebaseContext.Provider value={{ app, analytics, auth }}>
+    <FirebaseContext.Provider value={{ app, analytics, auth, storage }}>
       {children}
     </FirebaseContext.Provider>
   );

@@ -79,9 +79,8 @@ const CarForm = ({ navigation }) => {
     };
     console.log(data);
     if (make && model && year && color && vin) {
-      console.log("submitting", data);
       VehicleService.create(data).then((vehicle) => {
-        navigation.navigate("Registration", { vehicle });
+        navigation.navigate("Registration", { ...data, id: vehicle.id });
       });
     }
   };

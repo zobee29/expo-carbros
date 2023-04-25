@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, addDoc, setDoc, query, where } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, updateDoc, serverTimestamp, query, where } from "firebase/firestore";
 import { db } from '../firestore/firestore-provider';
 
 
@@ -14,7 +14,7 @@ export default class DataService {
 
   update(id, data) {
     const docRef = doc(db, this.collectionName, id);
-    return setDoc(docRef, data)
+    return updateDoc(docRef, {...data, timestamp: serverTimestamp()})
   }
 
   get(id) {

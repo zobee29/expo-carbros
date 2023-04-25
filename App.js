@@ -12,7 +12,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const Tab = createBottomTabNavigator();
 
-const HideTabBarRoutes = ["Add Vehicle", "Registration"];
+const HideTabBarRoutes = ["Add Vehicle", "Registration", "Tracker Status", "Inspection Status", "Availability Status"];
 
 export default function App() {
   return (

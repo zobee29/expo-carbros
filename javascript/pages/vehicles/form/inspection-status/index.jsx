@@ -1,15 +1,14 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import styles from "../style";
 import Switch from "components/switch";
 import TextInput from "components/text-input";
 import Button from "components/button";
 import styled from "styled-components/native";
 import dayjs from "dayjs";
-import { VehicleService } from "services";
 import { theme } from "theme";
 
-const RegistrationCtaContainer = styled.View`
+const InspectionCtaContainer = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -26,7 +25,7 @@ const UploadedFileContainer = styled.View`
   gap: 2px;
 `;
 
-const RegistrationContainer = styled.View`
+const InspectionContainer = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -36,11 +35,11 @@ const RegistrationContainer = styled.View`
   border: 1px solid ${theme.colors.border};
 `;
 
-const RegistrationForm = styled.View`
+const InspectionForm = styled.View`
   width: 100%;
 `;
 
-const RegistrationUploadButton = styled.TouchableOpacity`
+const InspectionUploadButton = styled.TouchableOpacity`
   height: 24px;
   background-color: ${theme.colors.primary};
   color: white;
@@ -51,24 +50,17 @@ const RegistrationUploadButton = styled.TouchableOpacity`
   text-align: center;
 `;
 
-const RegistrationButtonText = styled.Text`
+const InspectionButtonText = styled.Text`
   color: white;
   font-size: 9px;
   width: 50px;
   padding-bottom: 2px;
 `;
 
-const Registration = ({ route, navigation }) => {
-  console.log(route.params);
-  const vehicle = route.params;
-  const [isRegistered, setIsRegistered] = React.useState(false);
-  const [registrationDocument, setRegistrationDocument] = React.useState();
-  const [licensePlateNumber, setLicensePlateNumber] = React.useState("");
+const InspectionStatus = ({ navigation }) => {
+  const [isInspected, setIsInspected] = React.useState(false);
+  const [inspectionDocument, setInspectionDocument] = React.useState();
   const [expirationDate, setExpirationDate] = React.useState("");
-
-  const hasValidLicensePlateNumber = () => {
-    return licensePlateNumber.length === 6;
-  };
 
   const hasValidExpirationDate = () => {
     return expirationDate.length === 8;
@@ -76,7 +68,7 @@ const Registration = ({ route, navigation }) => {
 
   const handleLicensePlateNumberChange = (event) => {
     let text = event.target.value;
-    if (text.length >= 6) return;
+    if (text.length > 6) return;
     setLicensePlateNumber(text);
   };
 
@@ -94,74 +86,66 @@ const Registration = ({ route, navigation }) => {
   };
 
   const onSubmit = () => {
-    VehicleService.update(vehicle.id, {
-      is_registered: isRegistered,
-      license_plate_number: licensePlateNumber,
-      registration_expiration_date: expirationDate,
-    })
-      .then((res) => {
-        navigation.navigate("Tracker Status", res);
-      })
-      .catch((err) => {});
+    console.log("TO-DO: Submit inspection form");
+    navigation.navigate("Availability Status");
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.inputContainer}>
         <Switch
-          label="Registration Completed"
-          onValueChange={setIsRegistered}
-          value={isRegistered}
+          label="Inspection Completed"
+          onValueChange={setIsInspected}
+          value={isInspected}
         />
-        {isRegistered && (
-          <RegistrationForm>
-            <RegistrationContainer>
-              <RegistrationCtaContainer>
-                <Text>Registration Document</Text>
-                <label for="registration">
-                  <RegistrationUploadButton>
-                    <RegistrationButtonText>Upload</RegistrationButtonText>
-                  </RegistrationUploadButton>
+        {isInspected && (
+          <InspectionForm>
+            <InspectionContainer>
+              <InspectionCtaContainer>
+                <Text>Inspection Document</Text>
+                <label for="inspection">
+                  <InspectionUploadButton>
+                    <InspectionButtonText>Upload</InspectionButtonText>
+                  </InspectionUploadButton>
                 </label>
                 <input
                   type="file"
-                  id="registration"
+                  id="inspection"
                   style={{ display: "none" }}
-                  onChange={(e) => setRegistrationDocument(e.target.files[0])}
+                  onChange={(e) => setInspectionDocument(e.target.files[0])}
                 />
-              </RegistrationCtaContainer>
-              {registrationDocument && (
+              </InspectionCtaContainer>
+              {inspectionDocument && (
                 <UploadedFileContainer>
                   <Text style={{ fontSize: "11px" }}>
                     Uploaded on:{" "}
-                    {dayjs(registrationDocument.lastModifiedDate).format(
+                    {dayjs(inspectionDocument.lastModifiedDate).format(
                       "MM/DD/YYYY"
                     )}
                   </Text>
                   <Text style={{ fontSize: "9px" }}>
-                    {registrationDocument.name}
+                    {inspectionDocument.name}
                   </Text>
                 </UploadedFileContainer>
               )}
-            </RegistrationContainer>
-            <TextInput
-              label="License Plate Number"
-              placeholder="XXXXXX"
-              onChange={handleLicensePlateNumberChange}
-              value={licensePlateNumber}
-            />
+            </InspectionContainer>
             <TextInput
               label="Expiration Date"
               placeholder="MM/DD/YY"
               onChange={handleExpirationDateChange}
               value={expirationDate}
             />
-          </RegistrationForm>
+          </InspectionForm>
         )}
       </View>
       <View style={styles.ctaContainer}>
-        <Button mode="contained" style={styles.fullWidth} onPress={onSubmit}>
-          Continue to Tracker Status
+        <Button
+          mode="contained"
+          style={styles.fullWidth}
+          onPress={onSubmit}
+          disabled={!hasValidExpirationDate}
+        >
+          Continue to Availability Status
         </Button>
         <Button
           mode="text"
@@ -174,8 +158,8 @@ const Registration = ({ route, navigation }) => {
           Save and Exit
         </Button>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
-export default Registration;
+export default InspectionStatus;
