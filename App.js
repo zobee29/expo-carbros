@@ -4,13 +4,15 @@ import FirebaseProvider from './javascript/firebase/firebase-provider';
 import FirestoreProvider from './javascript/firestore/firestore-provider';
 import DataStoreProvider from 'datastore/datastore-provider';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { theme } from 'theme'
 import { Dashboard, Drivers, Vehicles } from 'pages'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
+
+const HideTabBarRoutes = ["Add Vehicle", "Registration"];
 
 export default function App() {
   return (
@@ -21,9 +23,11 @@ export default function App() {
             <NavigationContainer>
               <Tab.Navigator
               initialRouteName={"Vehicles"}
-                screenOptions={{
-                  tabBarStyle: {backgroundColor: '#DAE4E4', minHeight: '72px', paddingBottom: '12px', display: 'flex', justifyContent: 'center', alignItems: 'space-evenly'},
-                }}
+                screenOptions={({route}) => {
+                  const hideTab = HideTabBarRoutes.includes(getFocusedRouteNameFromRoute(route));
+                  return({
+                  tabBarStyle: {backgroundColor: '#DAE4E4', minHeight: '72px', paddingBottom: '12px', display: 'flex', justifyContent: 'center', alignItems: 'space-evenly', display: hideTab ? 'none' : 'flex'},
+                })}}
               >
                 <Tab.Screen name="Dashboard"
                   options={{
