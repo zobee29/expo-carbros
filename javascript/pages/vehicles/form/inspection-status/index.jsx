@@ -59,7 +59,7 @@ const InspectionButtonText = styled.Text`
 `;
 
 const InspectionStatus = ({ route, navigation }) => {
-  const vehicle = route.params;
+  const { vehicle } = route.params;
   const [isInspected, setIsInspected] = React.useState(false);
   const [inspectionDocument, setInspectionDocument] = React.useState();
   const [expirationDate, setExpirationDate] = React.useState("");
@@ -97,12 +97,18 @@ const InspectionStatus = ({ route, navigation }) => {
       is_inspected: isInspected,
       inspection_expiration_date: expirationDate,
     };
-    InspectionService.upload(inspectionDocument).then((res) => {
+    console.log(inspectionDocument);
+    InspectionService.upload(
+      inspectionDocument,
+      `${vehicle.nickname}-inspection`
+    ).then((res) => {
       (data.inspection_document_id = res.metadata.fullPath),
         VehicleService.update(vehicle.id, data)
           .then((res) => {
             const updatedVehicle = { ...vehicle, ...data };
-            navigation.navigate("Availability Status", updatedVehicle);
+            navigation.navigate("Availability Status", {
+              vehicle: updatedVehicle,
+            });
           })
           .catch((err) => {});
     });

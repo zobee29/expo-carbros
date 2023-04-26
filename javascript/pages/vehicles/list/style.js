@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     padding: '16px',
     backgroundColor: "#fff",
     height: "100%",
+    gap: '12px',
+    display: 'flex',
+    flexDirection: 'column',
   }
 });
 

@@ -3,12 +3,14 @@ import { Text, View } from "react-native";
 import styles from "./style";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useTheme } from "react-native-paper";
+import capitalize from "lodash/capitalize";
 
 const VehicleCard = ({ vehicle }) => {
-  const { year, color, make, model, vin, status, upcoming } = vehicle;
+  const { year, color, make, model, vin, upcoming, is_available } = vehicle;
   const theme = useTheme();
 
   const lastFour = vin.slice(-4);
+  const status = capitalize(is_available);
 
   return (
     <View style={styles.container}>

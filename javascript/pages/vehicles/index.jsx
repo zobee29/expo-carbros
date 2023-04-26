@@ -25,8 +25,14 @@ const Vehicles = () => {
         />
         <Stack.Screen name="Add Vehicle" component={BasicInfo} />
         <Stack.Screen name="Registration" component={Registration} />
+        <Stack.Screen name="Edit Registration" component={Registration} />
         <Stack.Screen name="Tracker Status" component={TrackerStatus} />
+        <Stack.Screen name="Edit Tracker Status" component={TrackerStatus} />
         <Stack.Screen name="Inspection Status" component={InspectionStatus} />
+        <Stack.Screen
+          name="Edit Inspection Status"
+          component={InspectionStatus}
+        />
         <Stack.Screen
           name="Availability Status"
           component={AvailabilityStatus}

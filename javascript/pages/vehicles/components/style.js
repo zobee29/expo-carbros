@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     fontSize: '14px',
     gap: '4px',
-    borderBottom: `1px solid ${theme.colors.border}`,
     padding: '8px',
   },
   titleContainer: {

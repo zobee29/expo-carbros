@@ -59,8 +59,10 @@ const RegistrationButtonText = styled.Text`
 `;
 
 const Registration = ({ route, navigation }) => {
-  const vehicle = route.params;
-  const [isRegistered, setIsRegistered] = React.useState(false);
+  const { vehicle } = route.params;
+  const [isRegistered, setIsRegistered] = React.useState(
+    vehicle.is_registered || false
+  );
   const [registrationDocument, setRegistrationDocument] = React.useState();
   const [licensePlateNumber, setLicensePlateNumber] = React.useState("");
   const [expirationDate, setExpirationDate] = React.useState("");
@@ -103,12 +105,15 @@ const Registration = ({ route, navigation }) => {
       license_plate_number: licensePlateNumber,
       registration_expiration_date: expirationDate,
     };
-    RegistrationService.upload(registrationDocument).then((res) => {
+    RegistrationService.upload(
+      registrationDocument,
+      `${vehicle.nickname}-registration`
+    ).then((res) => {
       (data.registration_document_id = res.metadata.fullPath),
         VehicleService.update(vehicle.id, data)
           .then((res) => {
             const updatedVehicle = { ...vehicle, ...data };
-            navigation.navigate("Tracker Status", updatedVehicle);
+            navigation.navigate("Tracker Status", { vehicle: updatedVehicle });
           })
           .catch((err) => {});
     });
@@ -170,7 +175,7 @@ const Registration = ({ route, navigation }) => {
       </View>
       <View style={styles.ctaContainer}>
         <Button mode="contained" style={styles.fullWidth} onPress={onSubmit}>
-          Continue to Tracker Status
+          Add Vehicle
         </Button>
         <Button
           mode="text"

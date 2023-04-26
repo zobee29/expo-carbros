@@ -6,8 +6,17 @@ import FilterChips from "../components/filter-chips";
 import TextInput from "components/text-input";
 import { VehicleService } from "services";
 
-const VehiclesList = () => {
+const VehiclesList = ({ route }) => {
   const [vehicles, setVehicles] = useState([]);
+
+  useEffect(() => {
+    const index = vehicles.findIndex(
+      (vehicle) => vehicle.id === route.params?.vehicle?.id
+    );
+    if (route.params?.vehicle && index === -1) {
+      setVehicles((vehicles) => [...vehicles, route.params.vehicle]);
+    }
+  }, [route.params?.vehicle]);
 
   useEffect(() => {
     VehicleService.list().then((vehicles) => {

@@ -14,14 +14,16 @@ const TrackerForm = styled.View`
 `;
 
 const TrackerStatus = ({ route, navigation }) => {
-  const vehicle = route.params;
-  const [isTracking, setIsTracking] = React.useState(false);
+  const { vehicle } = route.params;
+  const [isTracked, setIsTracked] = React.useState(vehicle.is_tracked || false);
 
   const onSubmit = () => {
-    VehicleService.update(vehicle.id, { is_tracking: isTracking }).then(() => {
+    VehicleService.update(vehicle.id, { is_tracking: isTracked }).then(() => {
       navigation.navigate("Inspection Status", {
-        ...vehicle,
-        is_tracking: isTracking,
+        vehicle: {
+          ...vehicle,
+          is_tracked: isTracked,
+        },
       });
     });
   };
@@ -31,8 +33,8 @@ const TrackerStatus = ({ route, navigation }) => {
       <View style={styles.inputContainer}>
         <Switch
           label="Tracker Installed"
-          onValueChange={setIsTracking}
-          value={isTracking}
+          onValueChange={setIsTracked}
+          value={isTracked}
         />
       </View>
       <View style={styles.ctaContainer}>

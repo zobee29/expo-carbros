@@ -18,8 +18,10 @@ export const theme = {
     accent: '#4A6364',
     background: '#FAFDFC',
     surface: '#FAFDFC',
+    surfaceVariant: '#DAE4E4',
     onBackground: '#181c1c',
     onSurface: '#191C1C',
+    onSurfaceVariant: '#3F4949',
     tertiaryContainer: '#d4e3ff',
     border: '#79747E',
     elevation: {
