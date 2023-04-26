@@ -176,10 +176,10 @@ const AvailabilityStatus = ({ route, navigation }) => {
               style={{ width: "100%" }}
               showSelectedCheck
               buttons={[
-                { label: "Available", value: "available" },
+                { label: "Available", value: true },
                 {
                   label: "Unavailable",
-                  value: "unavailable",
+                  value: false,
                   style: { width: "fit-content" },
                 },
               ]}

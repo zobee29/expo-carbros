@@ -97,12 +97,11 @@ const Registration = ({ route, navigation }) => {
   const uploadRegistrationDocument = (event) => {
     const file = event.target.files[0];
     if (file) {
-      RegistrationService.upload(
-        registrationDocument,
-        `${vehicle.nickname}-registration`
-      ).then((res) => {
-        setRegistrationDocument(res);
-      });
+      RegistrationService.upload(file, `${vehicle.nickname}-registration`).then(
+        (res) => {
+          setRegistrationDocument(res);
+        }
+      );
     }
   };
 
@@ -111,8 +110,10 @@ const Registration = ({ route, navigation }) => {
       is_registered: isRegistered,
       license_plate_number: licensePlateNumber,
       registration_expiration_date: expirationDate,
-      registration_document_id: registrationDocument?.metadata?.fullPath,
     };
+    if (registrationDocument) {
+      data.registration_document = registrationDocument.id;
+    }
     VehicleService.update(vehicle.id, data)
       .then((res) => {
         const updatedVehicle = { ...vehicle, ...data };
@@ -143,7 +144,7 @@ const Registration = ({ route, navigation }) => {
                   type="file"
                   id="registration"
                   style={{ display: "none" }}
-                  onChange={(e) => setRegistrationDocument(e.target.files[0])}
+                  onChange={uploadRegistrationDocument}
                 />
               </RegistrationCtaContainer>
               {registrationDocument && (

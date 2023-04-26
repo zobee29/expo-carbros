@@ -3,12 +3,15 @@ import { Text, View } from "react-native";
 import styles from "./style";
 import VehicleCard from "../components/vehicle-card";
 import FilterChips from "../components/filter-chips";
+import HeaderButtons from "../components/header-buttons";
 import TextInput from "components/text-input";
 import { VehicleService } from "services";
 
-const VehiclesList = ({ route }) => {
+const VehiclesList = ({ route, navigation }) => {
   const [vehicles, setVehicles] = useState([]);
   const [filteredVehicles, setFilteredVehicles] = useState(vehicles);
+  const [openSearch, setOpenSearch] = useState(false);
+  const [search, setSearch] = useState("");
   const [selectedFilter, setSelectedFilter] = useState(null);
 
   useEffect(() => {
@@ -36,10 +39,10 @@ const VehiclesList = ({ route }) => {
       setFilteredVehicles(
         vehicles.filter((vehicle) => {
           if (selectedFilter === "available") {
-            return vehicle.is_available === "available";
+            return vehicle.is_available === true;
           }
           if (selectedFilter === "unavailable") {
-            return vehicle.is_available === "unavailable";
+            return vehicle.is_available === false;
           }
           if (selectedFilter === "upcoming_maintenance") {
             return vehicle.status === "upcoming_maintenance";
@@ -50,6 +53,20 @@ const VehiclesList = ({ route }) => {
   };
 
   useEffect(applyFilters, [selectedFilter]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons
+          setOpenSearch={setOpenSearch}
+          setSearch={setSearch}
+          navigation={navigation}
+        />
+      ),
+    });
+  }, []);
+
+  console.log(vehicles);
 
   return (
     <View style={styles.container}>

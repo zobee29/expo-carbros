@@ -16,13 +16,7 @@ const Vehicles = () => {
   return (
     <View style={styles.container}>
       <Stack.Navigator initialRouteName={"Vehicles"}>
-        <Stack.Screen
-          options={({ navigation }) => ({
-            headerRight: () => <HeaderButtons navigation={navigation} />,
-          })}
-          name="Vehicles"
-          component={VehiclesList}
-        />
+        <Stack.Screen name="Vehicles" component={VehiclesList} />
         <Stack.Screen name="Add Vehicle" component={BasicInfo} />
         <Stack.Screen name="Registration" component={Registration} />
         <Stack.Screen name="Edit Registration" component={Registration} />
