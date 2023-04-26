@@ -18,15 +18,12 @@ const FILTER_OPTIONS = [
   },
 ];
 
-const FilterChips = () => {
-  const [selected, setSelected] = useState([]);
-
+const FilterChips = ({ selectedFilter, setSelectedFilter }) => {
   const handlePress = (value) => {
-    console.log(value);
-    if (selected.includes(value)) {
-      setSelected(selected.filter((item) => item !== value));
+    if (selectedFilter === value) {
+      setSelectedFilter(null);
     } else {
-      setSelected([...selected, value]);
+      setSelectedFilter(value);
     }
   };
 
@@ -37,7 +34,7 @@ const FilterChips = () => {
           <Chip
             key={option.value}
             style={{ margin: 5 }}
-            selected={selected.includes(option.value)}
+            selected={selectedFilter === option.value}
             onPress={() => handlePress(option.value)}
           >
             {option.label}

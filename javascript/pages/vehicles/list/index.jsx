@@ -8,6 +8,8 @@ import { VehicleService } from "services";
 
 const VehiclesList = ({ route }) => {
   const [vehicles, setVehicles] = useState([]);
+  const [filteredVehicles, setFilteredVehicles] = useState(vehicles);
+  const [selectedFilter, setSelectedFilter] = useState(null);
 
   useEffect(() => {
     const index = vehicles.findIndex(
@@ -19,16 +21,44 @@ const VehiclesList = ({ route }) => {
   }, [route.params?.vehicle]);
 
   useEffect(() => {
-    VehicleService.list().then((vehicles) => {
-      setVehicles(vehicles);
-    });
+    if (vehicles.length === 0) {
+      VehicleService.list().then((vehicles) => {
+        setVehicles(vehicles);
+        setFilteredVehicles(vehicles);
+      });
+    }
   }, []);
+
+  const applyFilters = () => {
+    if (!selectedFilter) {
+      setFilteredVehicles(vehicles);
+    } else {
+      setFilteredVehicles(
+        vehicles.filter((vehicle) => {
+          if (selectedFilter === "available") {
+            return vehicle.is_available === "available";
+          }
+          if (selectedFilter === "unavailable") {
+            return vehicle.is_available === "unavailable";
+          }
+          if (selectedFilter === "upcoming_maintenance") {
+            return vehicle.status === "upcoming_maintenance";
+          }
+        })
+      );
+    }
+  };
+
+  useEffect(applyFilters, [selectedFilter]);
 
   return (
     <View style={styles.container}>
-      <FilterChips />
+      <FilterChips
+        selectedFilter={selectedFilter}
+        setSelectedFilter={setSelectedFilter}
+      />
       <View style={styles.content}>
-        {vehicles.map((vehicle) => (
+        {filteredVehicles.map((vehicle) => (
           <VehicleCard key={vehicle.id} vehicle={vehicle} />
         ))}
       </View>

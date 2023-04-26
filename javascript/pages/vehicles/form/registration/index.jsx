@@ -96,7 +96,14 @@ const Registration = ({ route, navigation }) => {
 
   const uploadRegistrationDocument = (event) => {
     const file = event.target.files[0];
-    setRegistrationDocument(file);
+    if (file) {
+      RegistrationService.upload(
+        registrationDocument,
+        `${vehicle.nickname}-registration`
+      ).then((res) => {
+        setRegistrationDocument(res);
+      });
+    }
   };
 
   const onSubmit = () => {
@@ -104,19 +111,14 @@ const Registration = ({ route, navigation }) => {
       is_registered: isRegistered,
       license_plate_number: licensePlateNumber,
       registration_expiration_date: expirationDate,
+      registration_document_id: registrationDocument?.metadata?.fullPath,
     };
-    RegistrationService.upload(
-      registrationDocument,
-      `${vehicle.nickname}-registration`
-    ).then((res) => {
-      (data.registration_document_id = res.metadata.fullPath),
-        VehicleService.update(vehicle.id, data)
-          .then((res) => {
-            const updatedVehicle = { ...vehicle, ...data };
-            navigation.navigate("Tracker Status", { vehicle: updatedVehicle });
-          })
-          .catch((err) => {});
-    });
+    VehicleService.update(vehicle.id, data)
+      .then((res) => {
+        const updatedVehicle = { ...vehicle, ...data };
+        navigation.navigate("Tracker Status", { vehicle: updatedVehicle });
+      })
+      .catch((err) => {});
   };
 
   return (
