@@ -6,18 +6,24 @@ import TextInput from "components/text-input";
 import Button from "components/button";
 import styled from "styled-components/native";
 import dayjs from "dayjs";
+import { VehicleService } from "services";
 import { theme } from "theme";
 
 const TrackerForm = styled.View`
   width: 100%;
 `;
 
-const TrackerStatus = ({ navigation }) => {
+const TrackerStatus = ({ route, navigation }) => {
+  const vehicle = route.params;
   const [isTracking, setIsTracking] = React.useState(false);
 
   const onSubmit = () => {
-    console.log("TO-DO: Submit tracker status");
-    navigation.navigate("Inspection Status");
+    VehicleService.update(vehicle.id, { is_tracking: isTracking }).then(() => {
+      navigation.navigate("Inspection Status", {
+        ...vehicle,
+        is_tracking: isTracking,
+      });
+    });
   };
 
   return (

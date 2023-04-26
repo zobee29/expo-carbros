@@ -14,6 +14,7 @@ export const theme = {
     onPrimaryContainer: '#002021',
     secondary: '#4A6364',
     secondaryContainer: '#CCE8E9',
+    onSecondaryContainer: '#041F20',
     accent: '#4A6364',
     background: '#FAFDFC',
     surface: '#FAFDFC',

@@ -6,7 +6,7 @@ import Button from "components/button";
 import Dropdown from "components/dropdown";
 import styles from "../style";
 import { theme } from "theme";
-import { VehicleService, VehicleDraftService } from "services";
+import { VehicleService } from "services";
 
 const MAKE_OPTIONS = [
   { label: "Toyota", value: "Toyota" },
@@ -19,12 +19,12 @@ const MODEL_OPTIONS = [
   { label: "Altima", value: "Altima" },
 ];
 
-const CarForm = ({ navigation }) => {
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
-  const [year, setYear] = useState("");
-  const [color, setColor] = useState("");
-  const [vin, setVin] = useState("");
+const CarForm = ({ navigation, vehicle }) => {
+  const [make, setMake] = useState(vehicle?.make || "");
+  const [model, setModel] = useState(vehicle?.model || "");
+  const [year, setYear] = useState(vehicle?.year || "");
+  const [color, setColor] = useState(vehicle?.color || "");
+  const [vin, setVin] = useState(vehicle?.vin || "");
   const [showMakeMenu, setShowMakeMenu] = useState(false);
   const [showModelMenu, setShowModelMenu] = useState(false);
   const [yearError, setYearError] = useState(false);
@@ -41,9 +41,10 @@ const CarForm = ({ navigation }) => {
   };
 
   const handleYearChange = (year) => {
+    if (year.length > 4) return;
     if (hasValidYear(year)) {
       setYearError(false);
-    } else {
+    } else if (year.length === 4) {
       setYearError(true);
     }
     setYear(year);
@@ -53,7 +54,7 @@ const CarForm = ({ navigation }) => {
     if (vin.length > 17) return;
     if (hasValidVin(vin)) {
       setVinError(false);
-    } else {
+    } else if (vin.length === 17) {
       setVinError(true);
     }
     setVin(vin);
@@ -70,14 +71,16 @@ const CarForm = ({ navigation }) => {
   };
 
   const onSubmit = () => {
+    const nickname =
+      year.slice(2, 4) + "-" + color + "-" + model + "-" + vin.slice(13, 17);
     const data = {
       make,
       model,
       year,
       color,
       vin,
+      nickname,
     };
-    console.log(data);
     if (make && model && year && color && vin) {
       VehicleService.create(data).then((vehicle) => {
         navigation.navigate("Registration", { ...data, id: vehicle.id });

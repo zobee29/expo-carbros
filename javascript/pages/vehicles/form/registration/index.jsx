@@ -6,7 +6,7 @@ import TextInput from "components/text-input";
 import Button from "components/button";
 import styled from "styled-components/native";
 import dayjs from "dayjs";
-import { VehicleService } from "services";
+import { VehicleService, RegistrationService } from "services";
 import { theme } from "theme";
 
 const RegistrationCtaContainer = styled.View`
@@ -59,7 +59,6 @@ const RegistrationButtonText = styled.Text`
 `;
 
 const Registration = ({ route, navigation }) => {
-  console.log(route.params);
   const vehicle = route.params;
   const [isRegistered, setIsRegistered] = React.useState(false);
   const [registrationDocument, setRegistrationDocument] = React.useState();
@@ -76,7 +75,7 @@ const Registration = ({ route, navigation }) => {
 
   const handleLicensePlateNumberChange = (event) => {
     let text = event.target.value;
-    if (text.length >= 6) return;
+    if (text.length >= 8) return;
     setLicensePlateNumber(text);
   };
 
@@ -93,16 +92,26 @@ const Registration = ({ route, navigation }) => {
     setExpirationDate(text);
   };
 
+  const uploadRegistrationDocument = (event) => {
+    const file = event.target.files[0];
+    setRegistrationDocument(file);
+  };
+
   const onSubmit = () => {
-    VehicleService.update(vehicle.id, {
+    const data = {
       is_registered: isRegistered,
       license_plate_number: licensePlateNumber,
       registration_expiration_date: expirationDate,
-    })
-      .then((res) => {
-        navigation.navigate("Tracker Status", res);
-      })
-      .catch((err) => {});
+    };
+    RegistrationService.upload(registrationDocument).then((res) => {
+      (data.registration_document_id = res.metadata.fullPath),
+        VehicleService.update(vehicle.id, data)
+          .then((res) => {
+            const updatedVehicle = { ...vehicle, ...data };
+            navigation.navigate("Tracker Status", updatedVehicle);
+          })
+          .catch((err) => {});
+    });
   };
 
   return (

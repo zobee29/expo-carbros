@@ -6,6 +6,7 @@ import TextInput from "components/text-input";
 import Button from "components/button";
 import styled from "styled-components/native";
 import dayjs from "dayjs";
+import { VehicleService, InspectionService } from "services";
 import { theme } from "theme";
 
 const InspectionCtaContainer = styled.View`
@@ -57,7 +58,8 @@ const InspectionButtonText = styled.Text`
   padding-bottom: 2px;
 `;
 
-const InspectionStatus = ({ navigation }) => {
+const InspectionStatus = ({ route, navigation }) => {
+  const vehicle = route.params;
   const [isInspected, setIsInspected] = React.useState(false);
   const [inspectionDocument, setInspectionDocument] = React.useState();
   const [expirationDate, setExpirationDate] = React.useState("");
@@ -85,9 +87,25 @@ const InspectionStatus = ({ navigation }) => {
     setExpirationDate(text);
   };
 
+  const uploadInspectionDocument = (event) => {
+    const file = event.target.files[0];
+    setInspectionDocument(file);
+  };
+
   const onSubmit = () => {
-    console.log("TO-DO: Submit inspection form");
-    navigation.navigate("Availability Status");
+    const data = {
+      is_inspected: isInspected,
+      inspection_expiration_date: expirationDate,
+    };
+    InspectionService.upload(inspectionDocument).then((res) => {
+      (data.inspection_document_id = res.metadata.fullPath),
+        VehicleService.update(vehicle.id, data)
+          .then((res) => {
+            const updatedVehicle = { ...vehicle, ...data };
+            navigation.navigate("Availability Status", updatedVehicle);
+          })
+          .catch((err) => {});
+    });
   };
 
   return (
@@ -112,7 +130,7 @@ const InspectionStatus = ({ navigation }) => {
                   type="file"
                   id="inspection"
                   style={{ display: "none" }}
-                  onChange={(e) => setInspectionDocument(e.target.files[0])}
+                  onChange={uploadInspectionDocument}
                 />
               </InspectionCtaContainer>
               {inspectionDocument && (
