@@ -19,7 +19,8 @@ const MODEL_OPTIONS = [
   { label: "Altima", value: "Altima" },
 ];
 
-const CarForm = ({ navigation, vehicle }) => {
+const CarForm = ({ navigation, route }) => {
+  const { vehicle } = route.params;
   const [make, setMake] = useState(vehicle?.make || "");
   const [model, setModel] = useState(vehicle?.model || "");
   const [year, setYear] = useState(vehicle?.year || "");

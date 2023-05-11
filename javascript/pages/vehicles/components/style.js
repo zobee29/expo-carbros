@@ -3,12 +3,22 @@ import { theme } from 'theme';
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: '48px',
+    minHeight: '48px',    
+    marginBottom: '12px',
+    padding: '16px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: '4px',
+    backgroundColor: theme.colors.elevation.level1
+  },
+  information: {
     flexDirection: "column",
     alignItems: "flex-start",
     fontSize: '14px',
-    gap: '4px',
-    padding: '8px',
+    gap: '8px'
   },
   titleContainer: {
     display: 'inline-flex',
@@ -28,7 +38,7 @@ const styles = StyleSheet.create({
   statusContainer: {
     display: 'inline-flex',
     flexDirection: 'row',
-    marginLeft: '8px',
+    // marginLeft: '8px',
     alignItems: 'center',
     gap: '4px'
   },

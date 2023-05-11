@@ -4,10 +4,8 @@ import { IconButton } from "react-native-paper";
 import styles from "./style";
 
 const HeaderButtons = ({
-  navigation,
-  setSearch,
   setOpenSearch,
-  openSearch,
+  onAdd
 }) => {
   return (
     <View style={styles.container}>
@@ -19,7 +17,7 @@ const HeaderButtons = ({
       />
       <IconButton
         size={24}
-        onPress={() => navigation.navigate("Add Vehicle")}
+        onPress={onAdd}
         style={{ padding: "10px", color: "black" }}
         icon="plus"
       />

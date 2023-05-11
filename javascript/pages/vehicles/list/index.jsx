@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Text, View, FlatList } from "react-native";
 import styles from "./style";
 import VehicleCard from "../components/vehicle-card";
 import FilterChips from "../components/filter-chips";
@@ -59,14 +59,11 @@ const VehiclesList = ({ route, navigation }) => {
       headerRight: () => (
         <HeaderButtons
           setOpenSearch={setOpenSearch}
-          setSearch={setSearch}
-          navigation={navigation}
+          onAdd={() => navigation.navigate("Add Vehicle")}
         />
       ),
     });
   }, []);
-
-  console.log(vehicles);
 
   return (
     <View style={styles.container}>
@@ -75,9 +72,7 @@ const VehiclesList = ({ route, navigation }) => {
         setSelectedFilter={setSelectedFilter}
       />
       <View style={styles.content}>
-        {filteredVehicles.map((vehicle) => (
-          <VehicleCard key={vehicle.id} vehicle={vehicle} />
-        ))}
+        <FlatList data={filteredVehicles} renderItem={({item}) => <VehicleCard vehicle={item} navigation={navigation}/>} />
       </View>
     </View>
   );

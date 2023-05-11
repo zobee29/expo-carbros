@@ -1,11 +1,19 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { SafeAreaView, View } from "react-native";
+import DriversList from "./list";
+import AddDrivers from "./form";
 import styles from "../style";
+
+const Stack = createNativeStackNavigator();
 
 const Drivers = () => {
   return (
     <View style={styles.container}>
-      <Text>Drivers</Text>
+      <Stack.Navigator initialRouteName={"Drivers"}>
+        <Stack.Screen name="Drivers" component={DriversList} />
+        <Stack.Screen name="Add Driver" component={AddDrivers} />
+      </Stack.Navigator>
     </View>
   );
 };

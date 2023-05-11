@@ -19,7 +19,11 @@ export default function App() {
     <FirebaseProvider>
       <FirestoreProvider>
         <DataStoreProvider>
-          <PaperProvider theme={theme}>
+          <PaperProvider theme={theme}
+            settings={{
+              icon: props => <MaterialCommunityIcons name={props.icon} {...props} />,
+            }}
+          >
             <NavigationContainer>
               <Tab.Navigator
               initialRouteName={"Vehicles"}
@@ -38,6 +42,7 @@ export default function App() {
                 component={Dashboard} />
                 <Tab.Screen name="Drivers"
                 options={{
+                  headerShown: false,
                   tabBarIcon: ({ focused, color, size }) => (
                     <MaterialCommunityIcons name="contacts" color={focused ? theme.colors.primary : color} size={size} />
                   ),

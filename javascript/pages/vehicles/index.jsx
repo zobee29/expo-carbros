@@ -7,8 +7,8 @@ import Registration from "./form/registration";
 import TrackerStatus from "./form/tracker-status";
 import InspectionStatus from "./form/inspection-status";
 import AvailabilityStatus from "./form/availability-status";
+import EditChecklist from "./form/edit-checklist";
 import styles from "../style";
-import HeaderButtons from "./components/header-buttons";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +18,7 @@ const Vehicles = () => {
       <Stack.Navigator initialRouteName={"Vehicles"}>
         <Stack.Screen name="Vehicles" component={VehiclesList} />
         <Stack.Screen name="Add Vehicle" component={BasicInfo} />
+        <Stack.Screen name="Edit Vehicle" component={EditChecklist} />
         <Stack.Screen name="Registration" component={Registration} />
         <Stack.Screen name="Edit Registration" component={Registration} />
         <Stack.Screen name="Tracker Status" component={TrackerStatus} />
