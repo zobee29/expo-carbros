@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
 import { Text, View, FlatList } from 'react-native';
+import { DriverService } from 'services';
 import HeaderButtons from 'pages/vehicles/components/header-buttons';
 import styles from './style';
 
 const DATA = [
     {
         id: '1',
-        title: 'First Item',
+        first_name: 'First Item',
+        last_name: 'Last_Name'
     },
     {
         id: '2',
-        title: 'Second Item',
+        first_name: 'Second Item',
+        last_name: 'Last_Name'
     },
     {
         id: '3',
-        title: 'Third Item',
+        first_name: 'Third Item',
+        last_name: 'Last_Name'
     },
 ];
 
@@ -27,6 +31,7 @@ const Item = ({ title }) => (
 const DriversList = ({ route, navigation }) => {
     const [openSearch, setOpenSearch] = React.useState(false);
     const [search, setSearch] = React.useState('');
+    const [drivers, setDrivers] = React.useState([]);
 
     useEffect(() => {
         navigation.setOptions({
@@ -39,15 +44,24 @@ const DriversList = ({ route, navigation }) => {
         });
     }, []);
 
+    useEffect(() => {
+        DriverService.list().then((drivers) => {
+            setDrivers(drivers);
+        });
+    }, []);
+
+    const getName = (driver) => `${driver.first_name} ${driver.last_name}`;
+    
+
     const renderItem = ({ item }) => (
-        <Item title={item.title} />
+        <Item title={getName(item)} />
     );
 
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <FlatList
-                    data={DATA}
+                    data={drivers}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                 />

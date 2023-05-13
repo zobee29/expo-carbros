@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from "./style";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { IconButton } from "react-native-paper";
@@ -13,7 +13,7 @@ const VehicleCard = ({ vehicle, navigation }) => {
   const status = is_available ? "Available" : "Unavailable";
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Edit Vehicle", { vehicle })} activeOpacity={0.7}>
       <View style={styles.information}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{`${year} ${color} ${make} ${model}`}</Text>
@@ -34,15 +34,7 @@ const VehicleCard = ({ vehicle, navigation }) => {
         </View>
       )}
       </View>
-      <View>
-        <IconButton
-          size={24}
-          onPress={() => navigation.navigate("Edit Vehicle", { vehicle })}
-          style={{  color: theme.colors.primary }}
-          icon="pencil"
-        />
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

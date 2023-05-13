@@ -26,7 +26,7 @@ export default function App() {
           >
             <NavigationContainer>
               <Tab.Navigator
-              initialRouteName={"Vehicles"}
+              initialRouteName={"Drivers"}
                 screenOptions={({route}) => {
                   const hideTab = HideTabBarRoutes.includes(getFocusedRouteNameFromRoute(route));
                   return({

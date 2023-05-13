@@ -4,6 +4,79 @@ export const theme = {
   // ...MD3LightTheme, // or MD3DarkTheme
   ...DefaultTheme,
   roundness: 4,
+  typography: {
+    fontFamily: 'Inter',
+    display1: {
+      fontFamily: 'Inter',
+      fontSize: 72,
+      fontWeight: 600,
+    },
+    display2: {
+      fontFamily: 'Inter',
+      fontSize: 60,
+      fontWeight: 600,
+    },
+    h1: {
+      fontFamily: 'Inter',
+      fontSize: 48,
+      fontWeight: 600,
+    },
+    h2: {
+      fontFamily: 'Inter',
+      fontSize: 39,
+      fontWeight: 600,
+    },
+    h3: {
+      fontFamily: 'Inter',
+      fontSize: 33,
+      fontWeight: 600,
+    },
+    h4: {
+      fontFamily: 'Inter',
+      fontSize: 28,
+      fontWeight: 600,
+    },
+    h5: {
+      fontFamily: 'Inter',
+      fontSize: 23,
+      fontWeight: 600,
+    },
+    h6: {
+      fontFamily: 'Inter',
+      fontSize: 19,
+      fontWeight: 600,
+    },
+    subheading: {
+      fontFamily: 'Inter',
+      fontSize: 20,
+      fontWeight: 400,
+    },
+    p1: {
+      fontFamily: 'Inter',
+      fontSize: 14,
+      fontWeight: 400,
+    },
+    p2: {
+      fontFamily: 'Inter',
+      fontSize: 16,
+      fontWeight: 400,
+    },
+    p3: {
+      fontFamily: 'Inter',
+      fontSize: 18,
+      fontWeight: 400,
+    },
+    caption: {
+      fontFamily: 'Inter',
+      fontSize: 12,
+      fontWeight: 400,
+    },
+    footer: {
+      fontFamily: 'Inter',
+      fontSize: 10,
+      fontWeight: 400,
+    },
+  },
   colors: {
     // ...MD3LightTheme.colors,
     ...DefaultTheme.colors,

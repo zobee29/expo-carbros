@@ -14,6 +14,7 @@ module.exports = function(api) {
             services: './javascript/services',
             datastore: './javascript/datastore',
             components: './javascript/components',
+            styles: './javascript/styles',
           },
         },
       ],
