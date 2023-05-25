@@ -1,5 +1,6 @@
 import React from "react";
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput } from "react-native";
+import Typography from "components/typography";
 import styled from "styled-components/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -10,7 +11,7 @@ const CustomTextInput = (props) => {
     <Container error={error}>
       {!!label && (
         <Label>
-          <LabelText>{label}</LabelText>
+          <LabelText variant="p1">{label}</LabelText>
         </Label>
       )}
       <Input {...props} />
@@ -44,7 +45,7 @@ const Label = styled.View`
   background-color: inherit;
 `;
 
-const LabelText = styled.Text`
+const LabelText = styled(Typography)`
   color: black;
   padding-left: 4px;
   padding-right: 4px;

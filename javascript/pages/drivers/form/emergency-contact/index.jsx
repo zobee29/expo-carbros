@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { DriverService } from 'services';
 import Button from "components/button";
 import TextInput from "components/text-input";

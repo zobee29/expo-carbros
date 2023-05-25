@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import Typography from "components/typography";
 import styles from "../style";
 import Switch from "components/switch";
 import TextInput from "components/text-input";
@@ -51,12 +52,6 @@ const RegistrationUploadButton = styled.TouchableOpacity`
   text-align: center;
 `;
 
-const RegistrationButtonText = styled.Text`
-  color: white;
-  font-size: 9px;
-  width: 50px;
-  padding-bottom: 2px;
-`;
 
 const Registration = ({ route, navigation }) => {
   const { vehicle } = route.params;
@@ -134,10 +129,15 @@ const Registration = ({ route, navigation }) => {
           <RegistrationForm>
             <RegistrationContainer>
               <RegistrationCtaContainer>
-                <Text>Registration Document</Text>
+                <Typography style={{
+                  color: 'white',
+                  fontSize: 9,
+                  width: 50,
+                  paddingBottom: 2,
+                }}>Registration Document</Typography>
                 <label for="registration">
                   <RegistrationUploadButton>
-                    <RegistrationButtonText>Upload</RegistrationButtonText>
+                    <Typography>Upload</Typography>
                   </RegistrationUploadButton>
                 </label>
                 <input
@@ -149,15 +149,15 @@ const Registration = ({ route, navigation }) => {
               </RegistrationCtaContainer>
               {registrationDocument && (
                 <UploadedFileContainer>
-                  <Text style={{ fontSize: "11px" }}>
+                  <Typography style={{ fontSize: "11px" }}>
                     Uploaded on:{" "}
                     {dayjs(registrationDocument.lastModifiedDate).format(
                       "MM/DD/YYYY"
                     )}
-                  </Text>
-                  <Text style={{ fontSize: "9px" }}>
+                  </Typography>
+                  <Typography style={{ fontSize: "9px" }}>
                     {registrationDocument.name}
-                  </Text>
+                  </Typography>
                 </UploadedFileContainer>
               )}
             </RegistrationContainer>

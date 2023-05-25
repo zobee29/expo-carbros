@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
+import Typography from "components/typography";
 import styles from "./style";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { IconButton } from "react-native-paper";
@@ -16,21 +17,21 @@ const VehicleCard = ({ vehicle, navigation }) => {
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Edit Vehicle", { vehicle })} activeOpacity={0.7}>
       <View style={styles.information}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{`${year} ${color} ${make} ${model}`}</Text>
-        <Text style={styles.titleDetail}>{` - ${lastFour}`}</Text>
+        <Typography style={styles.title}>{`${year} ${color} ${make} ${model}`}</Typography>
+        <Typography style={styles.titleDetail}>{` - ${lastFour}`}</Typography>
       </View>
       {status && (
         <View style={styles.statusContainer}>
           <MaterialCommunityIcons name={"account"} color="#5C5F5F" />
-          <Text style={styles.status}>{`Status: ${status}`}</Text>
+          <Typography style={styles.status}>{`Status: ${status}`}</Typography>
         </View>
       )}
       {upcoming && (
         <View style={styles.upcomingContainer}>
           <MaterialCommunityIcons name={"wrench"} color={theme.colors.error} />
-          <Text style={{ ...styles.upcoming, color: theme.colors.error }}>
+          <Typography style={{ ...styles.upcoming, color: theme.colors.error }}>
             UPCOMING {upcoming}
-          </Text>
+          </Typography>
         </View>
       )}
       </View>

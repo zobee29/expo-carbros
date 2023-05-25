@@ -1,11 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import styles from "../style";
 import Switch from "components/switch";
-import TextInput from "components/text-input";
 import Button from "components/button";
 import styled from "styled-components/native";
-import dayjs from "dayjs";
 import { VehicleService } from "services";
 import { theme } from "theme";
 

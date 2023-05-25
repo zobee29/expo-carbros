@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
+import Typography from 'components/typography';
 import { DriverService } from 'services';
 import HeaderButtons from 'pages/vehicles/components/header-buttons';
 import styles from './style';
@@ -24,7 +25,7 @@ const DATA = [
 
 const Item = ({ title }) => (
     <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
+        <Typography style={styles.title}>{title}</Typography>
     </View>
 );
 

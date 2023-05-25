@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import Typography from 'components/typography';
 import Switch from "components/switch";
 import { IconButton } from "react-native-paper";
 import { theme } from 'theme';
@@ -27,11 +28,11 @@ const EditChecklist = ({ route, navigation }) => {
                     <EditButton onPress={() => navigation.navigate("Add Vehicle", { vehicle })} />
                 </ChecklistItemHeader>
                 <ChecklistInfo>
-                    <Text>Make: <strong>{vehicle?.make}</strong></Text>
-                    <Text>Model: <strong>{vehicle?.model}</strong></Text>
-                    <Text>Year: <strong>{vehicle?.year}</strong></Text>
-                    <Text>Color: <strong>{vehicle?.color}</strong></Text>
-                    <Text>VIN: <strong>{vehicle?.vin}</strong></Text>
+                    <Typography>Make: <strong>{vehicle?.make}</strong></Typography>
+                    <Typography>Model: <strong>{vehicle?.model}</strong></Typography>
+                    <Typography>Year: <strong>{vehicle?.year}</strong></Typography>
+                    <Typography>Color: <strong>{vehicle?.color}</strong></Typography>
+                    <Typography>VIN: <strong>{vehicle?.vin}</strong></Typography>
                 </ChecklistInfo>
             </ChecklistItemContainer>
             <ChecklistItemContainer>
@@ -42,10 +43,10 @@ const EditChecklist = ({ route, navigation }) => {
                 <EditButton onPress={() => navigation.navigate("Registration", { vehicle })} />
                 </ChecklistItemHeader>
                 <ChecklistInfo>
-                    <Text>Registered: <strong>{vehicle?.is_registered ? 'Is Registered' : 'Is Not Registered'}</strong></Text>
-                    <Text>License Plate Number: <strong>{vehicle?.license_plate_number}</strong></Text>
-                    <Text>Expires At: <strong>{vehicle?.registration_expiration_date}</strong></Text>
-                    <Text>Uploaded At: <strong>{"TO-DO"}</strong></Text>
+                    <Typography>Registered: <strong>{vehicle?.is_registered ? 'Is Registered' : 'Is Not Registered'}</strong></Typography>
+                    <Typography>License Plate Number: <strong>{vehicle?.license_plate_number}</strong></Typography>
+                    <Typography>Expires At: <strong>{vehicle?.registration_expiration_date}</strong></Typography>
+                    <Typography>Uploaded At: <strong>{"TO-DO"}</strong></Typography>
                 </ChecklistInfo>
             </ChecklistItemContainer>
             <ChecklistItemContainer>
@@ -56,7 +57,7 @@ const EditChecklist = ({ route, navigation }) => {
                 <EditButton onPress={() => navigation.navigate("Tracker Status", { vehicle })} />
                 </ChecklistItemHeader>
                 <ChecklistInfo>
-                    <Text>Tracking: <strong>{vehicle?.is_tracking ? "Is Tracking" : "Is Not Tracking"}</strong></Text>
+                    <Typography>Tracking: <strong>{vehicle?.is_tracking ? "Is Tracking" : "Is Not Tracking"}</strong></Typography>
                 </ChecklistInfo>
             </ChecklistItemContainer>
             <ChecklistItemContainer>
@@ -67,8 +68,8 @@ const EditChecklist = ({ route, navigation }) => {
                 <EditButton onPress={() => navigation.navigate("Inspection Status", { vehicle })} />
                 </ChecklistItemHeader>
                 <ChecklistInfo>
-                    <Text>Inspected: <strong>{vehicle?.is_inspected ? "Is Inspected" : "Is Not Inspected"}</strong></Text>
-                    <Text>Expires At: <strong>{vehicle?.inspection_expiration_date}</strong></Text>
+                    <Typography>Inspected: <strong>{vehicle?.is_inspected ? "Is Inspected" : "Is Not Inspected"}</strong></Typography>
+                    <Typography>Expires At: <strong>{vehicle?.inspection_expiration_date}</strong></Typography>
                 </ChecklistInfo>
             </ChecklistItemContainer>
             <ChecklistItemContainer>
@@ -77,8 +78,8 @@ const EditChecklist = ({ route, navigation }) => {
                     <ChecklistTitle>Availability Status</ChecklistTitle>
                 </View>
                 <ChecklistInfo>
-                    <Text>Inspected: <strong>{vehicle?.is_inspected ? "Is Inspected" : "Is Not Inspected"}</strong></Text>
-                    <Text>Expires At: <strong>{vehicle?.inspection_expiration_date}</strong></Text>
+                    <Typography>Inspected: <strong>{vehicle?.is_inspected ? "Is Inspected" : "Is Not Inspected"}</strong></Typography>
+                    <Typography>Expires At: <strong>{vehicle?.inspection_expiration_date}</strong></Typography>
                 </ChecklistInfo>
                 <EditButton onPress={() => navigation.navigate("Availability Status", { vehicle })} />
             </ChecklistItemHeader>
@@ -115,7 +116,7 @@ const ChecklistItemHeader = styled.View`
   align-items: center;
 `;
 
-const ChecklistTitle = styled.Text`
+const ChecklistTitle = styled(Typography)`
     font-size: 16px;
     font-weight: 500;
     color: ${theme.colors.primary};

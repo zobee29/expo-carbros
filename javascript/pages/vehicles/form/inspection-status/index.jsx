@@ -1,5 +1,6 @@
 import React from "react";
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, View } from "react-native";
+import Typography from 'components/typography';
 import styles from "../style";
 import Switch from "components/switch";
 import TextInput from "components/text-input";
@@ -49,13 +50,6 @@ const InspectionUploadButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   text-align: center;
-`;
-
-const InspectionButtonText = styled.Text`
-  color: white;
-  font-size: 9px;
-  width: 50px;
-  padding-bottom: 2px;
 `;
 
 const InspectionStatus = ({ route, navigation }) => {
@@ -126,10 +120,15 @@ const InspectionStatus = ({ route, navigation }) => {
           <InspectionForm>
             <InspectionContainer>
               <InspectionCtaContainer>
-                <Text>Inspection Document</Text>
+                <Typography>Inspection Document</Typography>
                 <label for="inspection">
                   <InspectionUploadButton>
-                    <InspectionButtonText>Upload</InspectionButtonText>
+                  <Typography style={{
+                  color: 'white',
+                  fontSize: 9,
+                  width: 50,
+                  paddingBottom: 2,
+                }}>Upload</Typography>
                   </InspectionUploadButton>
                 </label>
                 <input
@@ -141,15 +140,15 @@ const InspectionStatus = ({ route, navigation }) => {
               </InspectionCtaContainer>
               {inspectionDocument && (
                 <UploadedFileContainer>
-                  <Text style={{ fontSize: "11px" }}>
+                  <Typography style={{ fontSize: "11px" }}>
                     Uploaded on:{" "}
                     {dayjs(inspectionDocument.lastModifiedDate).format(
                       "MM/DD/YYYY"
                     )}
-                  </Text>
-                  <Text style={{ fontSize: "9px" }}>
+                  </Typography>
+                  <Typography style={{ fontSize: "9px" }}>
                     {inspectionDocument.name}
-                  </Text>
+                  </Typography>
                 </UploadedFileContainer>
               )}
             </InspectionContainer>
