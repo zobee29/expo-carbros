@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import TextInput from "components/text-input";
 import style from 'pages/style';
 

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import {
   TextInput,
-  Text,
   Button,
   Portal,
   Modal,
   List,
   Divider,
 } from "react-native-paper";
+import Typography from "components/typography";
 
 const CustomDropdown = ({ label, data, value, onSelect }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,7 +20,7 @@ const CustomDropdown = ({ label, data, value, onSelect }) => {
 
   return (
     <View>
-      <Text>{label}</Text>
+      <Typography>{label}</Typography>
       <TextInput
         label={value ? value : "Select"}
         value={value}

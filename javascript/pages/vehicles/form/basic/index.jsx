@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { Text, Menu } from "react-native-paper";
 import TextInput from "components/text-input";
 import Button from "components/button";
 import Dropdown from "components/dropdown";
@@ -19,8 +18,8 @@ const MODEL_OPTIONS = [
   { label: "Altima", value: "Altima" },
 ];
 
-const CarForm = ({ navigation, route }) => {
-  const { vehicle } = route.params;
+const CarForm = ({ navigation, route = {params: {}} }) => {
+  const { vehicle } = route.params || {};
   const [make, setMake] = useState(vehicle?.make || "");
   const [model, setModel] = useState(vehicle?.model || "");
   const [year, setYear] = useState(vehicle?.year || "");

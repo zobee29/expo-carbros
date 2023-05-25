@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import Typography from "components/typography";
 import styles from "../style";
 import Switch from "components/switch";
 import TextInput from "components/text-input";
@@ -62,12 +63,12 @@ const CompletionChip = styled.TouchableOpacity`
   gap: 4px;
 `;
 
-const CompletionText = styled.Text`
+const CompletionText = styled(Typography)`
   color: ${theme.colors.onSecondaryContainer};
   font-weight: bold;
 `;
 
-const ButtonText = styled.Text`
+const ButtonText = styled(Typography)`
   color: ${theme.colors.onSurfaceVariant};
   font-weight: bold;
 `;
@@ -104,7 +105,7 @@ const ChecklistItemComponent = ({ vehicle, item, navigation }) => {
 
   return (
     <ChecklistItem>
-      <Text>{item.label}</Text>
+      <Typography>{item.label}</Typography>
       {isComplete ? (
         <Complete />
       ) : (
@@ -169,7 +170,7 @@ const AvailabilityStatus = ({ route, navigation }) => {
         />
         <ChecklistContainer>
           <AvailabilityCtaContainer>
-            <Text>Is this vehicle ready for a driver?</Text>
+            <Typography>Is this vehicle ready for a driver?</Typography>
             <SegmentedButtons
               value={isAvailable}
               onValueChange={handleAvailabilityChange}

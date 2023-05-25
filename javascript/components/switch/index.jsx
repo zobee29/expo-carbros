@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import Typography from "components/typography";
 import { theme } from "theme";
 import { StyledSwitch, StyledSwitchContainer } from "./style";
 
@@ -10,7 +10,7 @@ const SwitchComponent = ({ label, value, onValueChange }) => {
 
   return (
     <StyledSwitchContainer>
-      <Text>{label}</Text>
+      <Typography variant={"p1"}>{label}</Typography>
       <StyledSwitch
         trackColor={{
           true: theme.colors.primary,

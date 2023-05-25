@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, FlatList } from "react-native";
+import {  View, FlatList } from "react-native";
 import styles from "./style";
 import VehicleCard from "../components/vehicle-card";
 import FilterChips from "../components/filter-chips";
 import HeaderButtons from "../components/header-buttons";
-import TextInput from "components/text-input";
 import { VehicleService } from "services";
 
 const VehiclesList = ({ route, navigation }) => {

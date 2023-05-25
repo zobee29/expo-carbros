@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Typography from "components/typography";
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
@@ -9,7 +10,7 @@ const DropdownComponent = (props) => {
 
   const renderLabel = () => {
     return (
-      <Text style={[styles.label, isFocus && { color: "blue" }]}>{label}</Text>
+      <Typography variant={'p1'} style={styles.label}>{label}</Typography>
     );
   };
 
