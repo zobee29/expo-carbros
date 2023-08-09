@@ -29,7 +29,7 @@ These instructions will help you set up the project on your local machine for de
 
 1. Clone the repository:
 
-   ```bash
+  ```bash
   git clone https://github.com/zobee29/expo-carbros.git
   ```
 
